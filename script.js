@@ -1,0 +1,6 @@
+function cart(){return JSON.parse(localStorage.getItem('pawnestCart')||'[]')}function save(c){localStorage.setItem('pawnestCart',JSON.stringify(c))}
+document.querySelectorAll('.add').forEach(b=>b.onclick=()=>{let c=cart();c.push({name:b.dataset.name,price:+b.dataset.price});save(c);alert('Added to cart!')});
+let box=document.getElementById('cart');if(box){let c=cart();if(!c.length)box.innerHTML='<p>Your cart is empty.</p>';else{c.forEach((x,i)=>box.innerHTML+=`<div class="box"><b>${x.name}</b> — ₹${x.price}</div>`);document.getElementById('total').textContent='Total: ₹'+c.reduce((s,x)=>s+x.price,0)}}
+let f=document.getElementById('contactForm');if(f)f.onsubmit=e=>{e.preventDefault();document.getElementById('contactMsg').textContent='Message submitted in this demo.';f.reset()};
+let b=document.getElementById('booking');if(b)b.onsubmit=e=>{e.preventDefault();document.getElementById('bookingMsg').textContent='Booking request submitted in this demo.';b.reset()};
+let co=document.getElementById('checkout');if(co)co.onclick=()=>alert('Demo checkout. Connect a backend/payment gateway for real orders.');
